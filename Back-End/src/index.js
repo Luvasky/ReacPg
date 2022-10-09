@@ -1,9 +1,21 @@
 const express=require('express');
+const db=require('./db.js');
+
 
 const app=express();
 
-app.get('/', (req, res) =>{
 
+//middlewaes 
+
+app.use(express.json());    //acepta datos tipo json
+app.use(express.urlencoded({extended: false}));  //acepta datos de un formulario
+
+
+app.use(require('./rutas/rutas.js'))
+db.connect();
+
+
+app.get('/', (req, res) =>{
     res.send("Servidro levantado")
 })
 app.listen(5000, () =>{

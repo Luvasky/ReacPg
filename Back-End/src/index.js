@@ -1,18 +1,22 @@
 const express=require('express');
 const db=require('./db.js');
+const cors = require("cors")
 
 
 const app=express();
+app.use(cors())
+
+
+
+
+
 
 
 //middlewaes 
-
+db.connect();
 app.use(express.json());    //acepta datos tipo json
 app.use(express.urlencoded({extended: false}));  //acepta datos de un formulario
-
-
 app.use(require('./rutas/rutas.js'))
-db.connect();
 
 
 app.get('/', (req, res) =>{
